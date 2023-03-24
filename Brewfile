@@ -1,0 +1,10 @@
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/core"
+tap "homebrew/services"
+brew "libpq"
+brew "libyaml"
+brew "postgresql@14", restart_service: true
+brew "ruby-build"
+brew "rbenv"
+brew "heroku/brew/heroku"
