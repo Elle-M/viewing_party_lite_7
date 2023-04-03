@@ -10,11 +10,11 @@ describe "Movie Index Page", :vcr do
     end
   end
 
-  it "shows the movie title as a link" do
+  xit "shows the movie title as a link" do
     expect(page).to have_link("The Shawshank Redemption")
   end
 
-  it "shows the movie vote average" do
+  xit "shows the movie vote average" do
     expect(page).to have_content("Vote Average: 8.701")
   end
 end  

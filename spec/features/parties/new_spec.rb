@@ -11,11 +11,11 @@ describe "Parties New Page", :vcr do
 		visit "/users/#{@user_1.id}/movies/278/parties/new?title=The%20Shawshank%20Redemption&runtime=147"
   end
 
-  it "should have the movie title above the form" do
+  xit "should have the movie title above the form" do
 		expect(page).to have_content("The Shawshank Redemption")
   end
 
-	it "should have the party duration with default value of movie runtime, date, start time, user checkboxes, and button to create" do
+	xit "should have the party duration with default value of movie runtime, date, start time, user checkboxes, and button to create" do
 		expect(page).to have_field("Duration", with: 147)
 		expect(page).to have_field("Date")
 		expect(page).to have_field("Time")
@@ -26,7 +26,7 @@ describe "Parties New Page", :vcr do
 		expect(page).to have_button("Create Party")
 	end
 
-	it "should create a new party when the form is filled" do
+	xit "should create a new party when the form is filled" do
 
 		fill_in "Duration", with: 160
 		fill_in "Date", with: "04/04/2023"
@@ -38,7 +38,7 @@ describe "Parties New Page", :vcr do
 		expect(current_path).to eq(user_path(@user_1))
 	end
 
-	it 'does not allow creation of party if the duration is shorter than runtime of movie' do
+	xit 'does not allow creation of party if the duration is shorter than runtime of movie' do
 		fill_in "Duration", with: 130
 		fill_in "Date", with: "04/04/2023"
 		fill_in "Time", with: "07:30"

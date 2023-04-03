@@ -4,6 +4,8 @@ class User < ApplicationRecord
 	validates :email, uniqueness: true,
 										presence: true,
 										format: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_presence_of :password_digest
+  has_secure_password
 
 	def host?(party)
 		user_party = UserParty.find_by(party: party)

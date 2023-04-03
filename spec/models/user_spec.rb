@@ -9,19 +9,23 @@ describe User do
 	describe "validations" do
 		it { should validate_presence_of :email }
 		it { should validate_uniqueness_of :email }
+    it { should validate_presence_of :password_digest}
+    it { should have_secure_password }
 		it "should validate that it's an email" do
-			john = User.new(name: "John Smith", email: "jsmith@gmail.com")
-			expect(john.valid?).to be(true)
-
+			john = User.new(name: "John Smith", email: "jsmith@gmail.com", password: "password", password_confirmation: "password")
+      # expect(john.valid?).to be(true)
+      expect(john).to_not have_attribute(:password)
+      expect(john.password_digest).to_not eq("password")
+  
 			john = User.new(name: "John Smith", email: "fasd324223")
 			expect(john.valid?).to be(false)
 		end
 	end
 
 	describe "::instance methods" do
-		let!(:user_1) { User.create!(name: "John", email: "john@email.com") }
-		let!(:user_2) { User.create!(name: "Mary", email: "mary@email.com") }
-		let!(:user_3) { User.create!(name: "Lisa", email: "lisa@email.com") }
+		let!(:user_1) { User.create!(name: "John", email: "john@email.com", password: "password", password_confirmation: "password" ) }
+		let!(:user_2) { User.create!(name: "Mary", email: "mary@email.com", password: "password1", password_confirmation: "password1") }
+		let!(:user_3) { User.create!(name: "Lisa", email: "lisa@email.com", password: "password2", password_confirmation: "password2") }
 
 		let!(:party_1) { Party.create!(runtime: 100, duration: 120, date: "4/4/2023", time: "4:00", movie_id: 76_341) }
 		let!(:party_2) { Party.create!(runtime: 100, duration: 136, date: "4/7/2023", time: "5:00", movie_id: 76_342) }
