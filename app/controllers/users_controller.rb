@@ -15,6 +15,21 @@ class UsersController < ApplicationController
 		end
 	end
 
+  def login_form
+  end
+
+  def login
+    user = User.find_by(email: params[:email])
+    if user.authenticate(params[:password])
+      #why isnt this working? I have checked it in the User model and it is there
+    flash[:success] = "Welcome, #{user.name}!"
+    redirect_to root_path
+    else
+      flash[:alert] = "Sorry, your credentials are bad."
+      redirect_to login_path
+    end
+  end
+
 	def show
 		@user = User.find(params[:id])
     @my_parties = @user.my_parties
